@@ -1,26 +1,22 @@
 import express, { Router, Request, Response} from 'express';
-import { Video } from '../../models/video.model';
-
+import reporteController from "./reporte.controller";
 import responseModule from '../../modules/response.module';
-import videoController from './video.controller';
-
+import { Reporte } from '../../models/reporte.model';
 
 const router: Router = express.Router();
-
 router.get("/all", async function(req: Request, res: Response){
     try {
-        const Videos: Video[] = await videoController.getAllVideos();
-        responseModule.success(req, res, Videos);
+        const Reportes: Reporte[] = await reporteController.getAllReportes();
+        responseModule.success(req, res, Reportes);
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
 });
 
 router.post("/add", async function(req: Request, res: Response){
-    const video:Video=req.body;
-
+    const reporte:Reporte = req.body;
     try {
-        const Result: Video | null = await videoController.addVideo(video);
+        const Result: Reporte | null = await reporteController.addReporte(reporte);
         responseModule.success(req, res, Result,201);
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");

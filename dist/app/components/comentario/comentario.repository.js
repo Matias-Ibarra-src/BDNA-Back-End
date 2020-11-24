@@ -12,31 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const response_module_1 = __importDefault(require("../../modules/response.module"));
-const video_controller_1 = __importDefault(require("./video.controller"));
-const router = express_1.default.Router();
-router.get("/all", function (req, res) {
+const comentario_schema_1 = __importDefault(require("./comentario.schema"));
+function getAllComentarios() {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const Videos = yield video_controller_1.default.getAllVideos();
-            response_module_1.default.success(req, res, Videos);
-        }
-        catch (error) {
-            response_module_1.default.error(req, res, "Error desconocido");
-        }
+        return comentario_schema_1.default.find();
     });
-});
-router.post("/add", function (req, res) {
+}
+function getComentarioById(id) {
     return __awaiter(this, void 0, void 0, function* () {
-        const video = req.body;
-        try {
-            const Result = yield video_controller_1.default.addVideo(video);
-            response_module_1.default.success(req, res, Result, 201);
-        }
-        catch (error) {
-            response_module_1.default.error(req, res, "Error desconocido");
-        }
+        return comentario_schema_1.default.findOne({ _id: id });
     });
-});
-exports.default = router;
+}
+function addComentario(comentario) {
+    return comentario_schema_1.default.create(comentario);
+}
+function deleteComentario(id) {
+    return comentario_schema_1.default.deleteOne({ _id: id }, function (err) {
+        if (err)
+            return console.error(err);
+    });
+}
+exports.default = { getAllComentarios, getComentarioById, addComentario, deleteComentario };

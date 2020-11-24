@@ -1,14 +1,14 @@
 import express, { Router, Request, Response} from 'express';
-import { User } from '../../models/user.model';
 import responseModule from '../../modules/response.module';
-import userController from './user.controller';
+import { Comentario } from '../../models/comentario.model';
+import comentarioController from './comentario.controller';
 
 const router: Router = express.Router();
 
 router.get("/all", async function(req: Request, res: Response){
     try {
-        const user: User[] = await userController.getAllUsers();
-        responseModule.success(req, res, user);
+        const comentados: Comentario[] = await comentarioController.getAllComentarios();
+        responseModule.success(req, res, comentados);
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
@@ -16,22 +16,25 @@ router.get("/all", async function(req: Request, res: Response){
 
 router.get('/:id', async function(req: Request, res: Response){
     const id : String = req.params['id'];
+    
     try {
-        let user: User | null = await userController.getUserById(id);
-        responseModule.success(req, res, user);
+        let comentado: Comentario | null = await comentarioController.getComentarioById(id);
+        responseModule.success(req, res, comentado);
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
 });
 
 router.post("/add", async function(req: Request, res: Response){
-    const user: User=req.body;
+    const comentado: Comentario=req.body;
     try {
-        const Result: User| null = await userController.addUser(user);
+        const Result: Comentario | null = await comentarioController.addComentario(comentado);
         responseModule.success(req, res, Result,201);
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
 });
+
+
 
 export default router;

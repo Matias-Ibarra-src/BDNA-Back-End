@@ -14,4 +14,5 @@ function addUser( user: User){
     return model.create<User>(user);
 }
 
+
 export default { getAllUsers , getUserById, addUser};

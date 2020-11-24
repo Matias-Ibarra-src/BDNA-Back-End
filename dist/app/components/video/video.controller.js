@@ -7,7 +7,7 @@ const video_repository_1 = __importDefault(require("../video/video.repository"))
 function getAllVideos() {
     return video_repository_1.default.getAllVideos();
 }
-function addVideo(video, id) {
+function addVideo(video) {
     video.fecha = new Date;
     return video_repository_1.default.addVideo(video);
 }

@@ -14,13 +14,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const response_module_1 = __importDefault(require("../../modules/response.module"));
-const video_controller_1 = __importDefault(require("./video.controller"));
+const comentario_controller_1 = __importDefault(require("./comentario.controller"));
 const router = express_1.default.Router();
 router.get("/all", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const Videos = yield video_controller_1.default.getAllVideos();
-            response_module_1.default.success(req, res, Videos);
+            const comentados = yield comentario_controller_1.default.getAllComentarios();
+            response_module_1.default.success(req, res, comentados);
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
+router.get('/:id', function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const id = req.params['id'];
+        try {
+            let comentado = yield comentario_controller_1.default.getComentarioById(id);
+            response_module_1.default.success(req, res, comentado);
         }
         catch (error) {
             response_module_1.default.error(req, res, "Error desconocido");
@@ -29,9 +41,9 @@ router.get("/all", function (req, res) {
 });
 router.post("/add", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const video = req.body;
+        const comentado = req.body;
         try {
-            const Result = yield video_controller_1.default.addVideo(video);
+            const Result = yield comentario_controller_1.default.addComentario(comentado);
             response_module_1.default.success(req, res, Result, 201);
         }
         catch (error) {

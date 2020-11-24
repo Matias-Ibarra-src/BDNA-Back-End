@@ -13,14 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const reporte_controller_1 = __importDefault(require("./reporte.controller"));
 const response_module_1 = __importDefault(require("../../modules/response.module"));
-const video_controller_1 = __importDefault(require("./video.controller"));
 const router = express_1.default.Router();
 router.get("/all", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const Videos = yield video_controller_1.default.getAllVideos();
-            response_module_1.default.success(req, res, Videos);
+            const Reportes = yield reporte_controller_1.default.getAllReportes();
+            response_module_1.default.success(req, res, Reportes);
         }
         catch (error) {
             response_module_1.default.error(req, res, "Error desconocido");
@@ -29,9 +29,9 @@ router.get("/all", function (req, res) {
 });
 router.post("/add", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
-        const video = req.body;
+        const reporte = req.body;
         try {
-            const Result = yield video_controller_1.default.addVideo(video);
+            const Result = yield reporte_controller_1.default.addReporte(reporte);
             response_module_1.default.success(req, res, Result, 201);
         }
         catch (error) {

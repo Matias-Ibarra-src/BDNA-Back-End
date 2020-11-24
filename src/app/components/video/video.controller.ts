@@ -5,7 +5,7 @@ function getAllVideos(){
     return videoRepository.getAllVideos();
 }
 
-function addVideo(video : Video, id :String){
+function addVideo(video : Video){
     video.fecha=new Date;
     return videoRepository.addVideo(video);
 }

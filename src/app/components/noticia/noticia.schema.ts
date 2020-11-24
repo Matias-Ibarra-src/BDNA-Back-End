@@ -7,6 +7,10 @@ const definition: Partial<Record< keyof Noticia, any>> = {
     resumen: { type : String , required : true},
     cuerpo: { type : String , required : true},
     categoria: { type : String , required : true},
+    VideoUrl: {type : String },
+    autor:{type : String, required : true},
+    visitas: {type : String },
+    mostraren:{type : String},
     fecha: {type: Date}
 };
 
