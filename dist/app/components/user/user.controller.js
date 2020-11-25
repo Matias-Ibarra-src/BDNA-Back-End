@@ -10,7 +10,10 @@ function getAllUsers() {
 function getUserById(id) {
     return user_repository_1.default.getUserById(id);
 }
+function getUserByEmail(email) {
+    return user_repository_1.default.getUserByEmail(email);
+}
 function addUser(user) {
     return user_repository_1.default.addUser(user);
 }
-exports.default = { getAllUsers, getUserById, addUser };
+exports.default = { getAllUsers, getUserById, addUser, getUserByEmail };

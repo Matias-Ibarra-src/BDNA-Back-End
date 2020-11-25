@@ -9,8 +9,12 @@ function getUserById(id : String){
     return userRepository.getUserById(id);
 }
 
+function getUserByEmail(email: String){
+    return userRepository.getUserByEmail(email);
+}
+
 function addUser(user : User){
     return userRepository.addUser(user);
 }
 
-export default {getAllUsers,getUserById,addUser};
+export default {getAllUsers,getUserById,addUser,getUserByEmail};

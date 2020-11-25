@@ -39,6 +39,18 @@ router.get('/:id', function (req, res) {
         }
     });
 });
+router.get('/:email', function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const email = req.params['email'];
+        try {
+            let user = yield user_controller_1.default.getUserByEmail(email);
+            response_module_1.default.success(req, res, user);
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
 router.post("/add", function (req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = req.body;

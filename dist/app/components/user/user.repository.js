@@ -21,7 +21,10 @@ function getAllUsers() {
 function getUserById(id) {
     return user_schema_1.default.findOne({ _id: id });
 }
+function getUserByEmail(Email) {
+    return user_schema_1.default.findOne({ Email: Email });
+}
 function addUser(user) {
     return user_schema_1.default.create(user);
 }
-exports.default = { getAllUsers, getUserById, addUser };
+exports.default = { getAllUsers, getUserById, addUser, getUserByEmail };

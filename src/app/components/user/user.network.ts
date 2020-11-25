@@ -24,6 +24,16 @@ router.get('/:id', async function(req: Request, res: Response){
     }
 });
 
+router.get('/:email', async function(req: Request, res: Response){
+    const email : String = req.params['email'];
+    try {
+        let user: User | null = await userController.getUserByEmail(email);
+        responseModule.success(req, res, user);
+    } catch (error) {
+        responseModule.error(req,res,"Error desconocido");
+    }
+});
+
 router.post("/add", async function(req: Request, res: Response){
     const user: User=req.body;
     try {
