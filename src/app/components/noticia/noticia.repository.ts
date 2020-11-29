@@ -1,5 +1,6 @@
 import { Noticia } from '../../models/noticia.model';
 import model from "./noticia.schema";
+import noticia from './index';
 
 async function getAllNoticias(): Promise<Noticia[]>{
     return model.find();
@@ -18,10 +19,5 @@ function deleteNoticia(id : string){
         if (err) return console.error(err);
       });
 }
-
-/*
-function updateNoticia(noticia: Noticia){
-    return model.update({titulo = "asdkasd"});
-}*/
 
 export default {getAllNoticias , getNoticiaById, addNoticia, deleteNoticia};

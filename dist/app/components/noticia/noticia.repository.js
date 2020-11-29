@@ -32,8 +32,4 @@ function deleteNoticia(id) {
             return console.error(err);
     });
 }
-/*
-function updateNoticia(noticia: Noticia){
-    return model.update({titulo = "asdkasd"});
-}*/
 exports.default = { getAllNoticias, getNoticiaById, addNoticia, deleteNoticia };

@@ -51,4 +51,16 @@ router.post("/add", function (req, res) {
         }
     });
 });
+router.delete("/delete/:id", function (req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const id = req.params['id'];
+        try {
+            let ok = yield comentario_controller_1.default.deleteComentario(id);
+            response_module_1.default.success(req, res, ok);
+        }
+        catch (error) {
+            response_module_1.default.error(req, res, "Error desconocido");
+        }
+    });
+});
 exports.default = router;

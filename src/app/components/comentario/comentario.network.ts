@@ -35,6 +35,15 @@ router.post("/add", async function(req: Request, res: Response){
     }
 });
 
-
+router.delete("/delete/:id",async function(req: Request, res: Response){
+    const id : string = req.params['id'];
+    
+    try {
+        let ok: any = await comentarioController.deleteComentario(id);
+        responseModule.success(req,res,ok);
+    } catch (error) {
+        responseModule.error(req,res,"Error desconocido");
+    }
+});
 
 export default router;

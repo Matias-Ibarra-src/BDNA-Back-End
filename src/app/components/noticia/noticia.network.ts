@@ -39,15 +39,12 @@ router.get('/:id', async function(req: Request, res: Response){
 
 router.post("/add", async function(req: Request, res: Response){
     const noticia: Noticia=req.body;
-
     try {
         const Result: Noticia | null = await noticiaController.addNoticia(noticia);
         responseModule.success(req, res, Result,201);
     } catch (error) {
         responseModule.error(req,res,"Error desconocido");
     }
-
 });
-
 
 export default router;

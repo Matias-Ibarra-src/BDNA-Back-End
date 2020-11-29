@@ -7,8 +7,9 @@ export interface Noticia{
     cuerpo: String;
     fecha: Date;
     categoria: String;
-    mostraren: String;
+    mostraren: Number;
     autor?: String;
     estado?: String;
-    visitas?: number;
+    visitas?: Number;
+    privada: Boolean;
 }
